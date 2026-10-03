@@ -1,0 +1,146 @@
+version: 2
+
+models:
+
+  - name: int_ai_usage_metrics
+    columns:
+
+      # ========================================================
+      # EVENT IDENTIFICATION
+      # ========================================================
+
+      - name: EVENT_ID
+        description: "Unique identifier for the AI usage event."
+
+        tests:
+          - not_null
+          - unique
+
+
+      # ========================================================
+      # ACCOUNT
+      # ========================================================
+
+      - name: ACCOUNT_ID
+        description: "Account associated with the AI usage event."
+
+        tests:
+          - not_null
+
+
+      # ========================================================
+      # SUBSCRIPTION
+      # ========================================================
+
+      - name: SUBSCRIPTION_ID
+        description: "Subscription associated with the AI usage event."
+
+        tests:
+          - not_null
+
+
+      # ========================================================
+      # AI MODEL
+      # ========================================================
+
+      - name: MODEL_NAME
+        description: "AI model used to process the request."
+
+        tests:
+          - not_null
+
+
+      # ========================================================
+      # AI FEATURE
+      # ========================================================
+
+      - name: FEATURE_NAME
+        description: "AI product feature used by the customer."
+
+        tests:
+          - not_null
+
+
+      # ========================================================
+      # INPUT TOKENS
+      # ========================================================
+
+      - name: INPUT_TOKENS
+        description: "Number of tokens included in the input."
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+
+      # ========================================================
+      # OUTPUT TOKENS
+      # ========================================================
+
+      - name: OUTPUT_TOKENS
+        description: "Number of tokens generated in the output."
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+
+      # ========================================================
+      # TOTAL TOKENS
+      # ========================================================
+
+      - name: TOTAL_TOKENS
+        description: "Total input and output tokens."
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+
+      # ========================================================
+      # LATENCY
+      # ========================================================
+
+      - name: LATENCY_MS
+        description: "AI request processing latency in milliseconds."
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+
+      # ========================================================
+      # STATUS
+      # ========================================================
+
+      - name: STATUS
+        description: "Processing status of the AI request."
+
+        tests:
+          - not_null
+
+          - accepted_values:
+              values:
+                - SUCCESS
+                - FAILED
+                - ERROR
+                - TIMEOUT
+
+
+      # ========================================================
+      # EVENT DATE
+      # ========================================================
+
+      - name: EVENT_DATE
+        description: "Date when the AI usage event occurred."
+
+        tests:
+          - not_null

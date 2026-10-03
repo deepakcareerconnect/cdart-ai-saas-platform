@@ -1,0 +1,71 @@
+version: 2
+
+models:
+
+  - name: int_account_revenue
+
+    columns:
+
+      # =========================================================
+      # ACCOUNT ID
+      # =========================================================
+
+      - name: account_id
+        tests:
+          - not_null
+          - unique
+
+          - relationships:
+              to: ref('stg_accounts')
+              field: account_id
+
+
+      # =========================================================
+      # SUBSCRIPTION / REVENUE METRICS
+      # =========================================================
+
+      - name: SUBSCRIPTION_COUNT
+        tests:
+          - not_null
+
+      - name: ACTIVE_SUBSCRIPTION_COUNT
+        tests:
+          - not_null
+
+      - name: MRR_AMOUNT
+        tests:
+          - not_null
+
+      - name: ARR_AMOUNT
+        tests:
+          - not_null
+
+      - name: TOTAL_REVENUE
+        tests:
+          - not_null
+
+      - name: PAYMENT_COUNT
+        tests:
+          - not_null
+
+      - name: SUCCESSFUL_PAYMENT_COUNT
+        tests:
+          - not_null
+
+      - name: FAILED_PAYMENT_COUNT
+        tests:
+          - not_null
+
+
+      # =========================================================
+      # CUSTOMER / ACCOUNT ATTRIBUTES
+      # =========================================================
+
+      - name: PLAN_TIER
+        tests:
+          - accepted_values:
+              values:
+                - Starter
+                - Professional
+                - Business
+                - Enterprise

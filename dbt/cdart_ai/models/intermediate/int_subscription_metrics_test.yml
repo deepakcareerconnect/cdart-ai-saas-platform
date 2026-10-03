@@ -1,0 +1,60 @@
+version: 2
+
+models:
+
+  - name: int_subscription_metrics
+
+    columns:
+      - name: SUBSCRIPTION_ID
+
+        tests:
+          - not_null
+          - unique
+
+          - relationships:
+              to: ref('stg_subscriptions')
+              field: SUBSCRIPTION_ID
+
+      - name: ACCOUNT_ID
+
+        tests:
+          - not_null
+
+          - relationships:
+              to: ref('stg_accounts')
+              field: ACCOUNT_ID
+
+      - name: PAYMENT_COUNT
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: TOTAL_PAYMENT_AMOUNT
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+
+      - name: SUPPORT_TICKET_COUNT
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: BILLING_FREQUENCY
+
+        tests:
+          - not_null
+
+          - accepted_values:
+              values:
+                - Monthly
+                - Annual

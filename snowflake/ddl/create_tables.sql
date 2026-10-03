@@ -1,0 +1,124 @@
+<<<<<<< HEAD
+USE database cdart_ai_saas_platform_DW;
+USE schema RAW;
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.ACCOUNTS (
+    ACCOUNT_ID       VARCHAR(50),
+    ACCOUNT_NAME     VARCHAR(255),
+    INDUSTRY         VARCHAR(150),
+    COUNTRY          VARCHAR(100),
+    SIGNUP_DATE      DATE,
+    REFERRAL_SOURCE  VARCHAR(100),
+    PLAN_TIER        VARCHAR(50),
+    SEATS            NUMBER(10,0),
+    IS_TRIAL         BOOLEAN,
+    CHURN_FLAG       BOOLEAN
+);
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.SUBSCRIPTIONS (
+    SUBSCRIPTION_ID    VARCHAR(50),
+    ACCOUNT_ID         VARCHAR(50),
+    START_DATE         DATE,
+    END_DATE           DATE,
+    PLAN_TIER          VARCHAR(50),
+    SEATS              NUMBER(10,0),
+    MRR_AMOUNT         NUMBER(12,2),
+    ARR_AMOUNT         NUMBER(14,2),
+    IS_TRIAL           BOOLEAN,
+    UPGRADE_FLAG       BOOLEAN,
+    DOWNGRADE_FLAG     BOOLEAN,
+    CHURN_FLAG         BOOLEAN,
+    BILLING_FREQUENCY  VARCHAR(30),
+    AUTO_RENEW_FLAG    BOOLEAN
+);
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.SUPPORT_TICKETS (
+    TICKET_ID                     VARCHAR(50),
+    ACCOUNT_ID                    VARCHAR(50),
+    SUBMITTED_AT                  TIMESTAMP_NTZ,
+    CLOSED_AT                     TIMESTAMP_NTZ,
+    RESOLUTION_TIME_HOURS         NUMBER(10,2),
+    PRIORITY                      VARCHAR(30),
+    FIRST_RESPONSE_TIME_MINUTES   NUMBER(10,2),
+    SATISFACTION_SCORE             NUMBER(3,1),
+    ESCALATION_FLAG                BOOLEAN
+);
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.PAYMENTS (
+    PAYMENT_ID       VARCHAR(50),
+    ACCOUNT_ID       VARCHAR(50),
+    SUBSCRIPTION_ID  VARCHAR(50),
+    PAYMENT_DATE     DATE,
+    AMOUNT           NUMBER(12,2),
+    CURRENCY         VARCHAR(10),
+    PAYMENT_STATUS   VARCHAR(30),
+    PAYMENT_METHOD   VARCHAR(50)
+);
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.AI_USAGE_EVENTS (
+    RAW_EVENT VARIANT,
+    SOURCE_FILE VARCHAR,
+    INGESTED_AT TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+=======
+USE database cdart_ai_saas_platform_DW;
+USE schema RAW;
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.ACCOUNTS (
+    ACCOUNT_ID       VARCHAR(50),
+    ACCOUNT_NAME     VARCHAR(255),
+    INDUSTRY         VARCHAR(150),
+    COUNTRY          VARCHAR(100),
+    SIGNUP_DATE      DATE,
+    REFERRAL_SOURCE  VARCHAR(100),
+    PLAN_TIER        VARCHAR(50),
+    SEATS            NUMBER(10,0),
+    IS_TRIAL         BOOLEAN,
+    CHURN_FLAG       BOOLEAN
+);
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.SUBSCRIPTIONS (
+    SUBSCRIPTION_ID    VARCHAR(50),
+    ACCOUNT_ID         VARCHAR(50),
+    START_DATE         DATE,
+    END_DATE           DATE,
+    PLAN_TIER          VARCHAR(50),
+    SEATS              NUMBER(10,0),
+    MRR_AMOUNT         NUMBER(12,2),
+    ARR_AMOUNT         NUMBER(14,2),
+    IS_TRIAL           BOOLEAN,
+    UPGRADE_FLAG       BOOLEAN,
+    DOWNGRADE_FLAG     BOOLEAN,
+    CHURN_FLAG         BOOLEAN,
+    BILLING_FREQUENCY  VARCHAR(30),
+    AUTO_RENEW_FLAG    BOOLEAN
+);
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.SUPPORT_TICKETS (
+    TICKET_ID                     VARCHAR(50),
+    ACCOUNT_ID                    VARCHAR(50),
+    SUBMITTED_AT                  TIMESTAMP_NTZ,
+    CLOSED_AT                     TIMESTAMP_NTZ,
+    RESOLUTION_TIME_HOURS         NUMBER(10,2),
+    PRIORITY                      VARCHAR(30),
+    FIRST_RESPONSE_TIME_MINUTES   NUMBER(10,2),
+    SATISFACTION_SCORE             NUMBER(3,1),
+    ESCALATION_FLAG                BOOLEAN
+);
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.PAYMENTS (
+    PAYMENT_ID       VARCHAR(50),
+    ACCOUNT_ID       VARCHAR(50),
+    SUBSCRIPTION_ID  VARCHAR(50),
+    PAYMENT_DATE     DATE,
+    AMOUNT           NUMBER(12,2),
+    CURRENCY         VARCHAR(10),
+    PAYMENT_STATUS   VARCHAR(30),
+    PAYMENT_METHOD   VARCHAR(50)
+);
+
+CREATE OR REPLACE TABLE cdart_ai_saas_platform_DW.RAW.AI_USAGE_EVENTS (
+    RAW_EVENT VARIANT,
+    SOURCE_FILE VARCHAR,
+    INGESTED_AT TIMESTAMP_NTZ DEFAULT CURRENT_TIMESTAMP()
+>>>>>>> 448cad1969301acd4faf665775b240bfb03c46fa
+);

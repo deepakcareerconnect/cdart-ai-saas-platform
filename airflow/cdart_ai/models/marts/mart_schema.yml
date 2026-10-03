@@ -1,0 +1,249 @@
+version: 2
+
+models:
+
+  # =========================================================
+  # DIM CUSTOMER
+  # =========================================================
+
+  - name: dim_customer
+
+    data_tests:
+      - unique:
+          arguments:
+            column_name: customer_key
+
+    columns:
+
+      - name: customer_key
+        data_tests:
+          - not_null
+
+
+  # =========================================================
+  # DIM SUBSCRIPTION
+  # =========================================================
+
+  - name: dim_subscription
+
+    data_tests:
+      - unique:
+          arguments:
+            column_name: subscription_key
+
+    columns:
+
+      - name: subscription_key
+        data_tests:
+          - not_null
+
+      - name: customer_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_key
+
+
+  # =========================================================
+  # DIM DATE
+  # =========================================================
+
+  - name: dim_date
+
+    data_tests:
+      - unique:
+          arguments:
+            column_name: date_key
+
+    columns:
+
+      - name: date_key
+        data_tests:
+          - not_null
+
+
+  # =========================================================
+  # DIM AI MODEL
+  # =========================================================
+
+  - name: dim_ai_model
+
+    data_tests:
+      - unique:
+          arguments:
+            column_name: ai_model_key
+
+    columns:
+
+      - name: ai_model_key
+        data_tests:
+          - not_null
+
+
+  # =========================================================
+  # DIM FEATURE
+  # =========================================================
+
+  - name: dim_feature
+
+    data_tests:
+      - unique:
+          arguments:
+            column_name: feature_key
+
+    columns:
+
+      - name: feature_key
+        data_tests:
+          - not_null
+
+
+  # =========================================================
+  # FACT AI USAGE
+  # =========================================================
+
+  - name: fct_ai_usage
+
+    data_tests:
+      - unique:
+          arguments:
+            column_name: ai_usage_key
+
+    columns:
+
+      - name: ai_usage_key
+        data_tests:
+          - not_null
+
+      - name: customer_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_key
+
+      - name: subscription_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_subscription')
+                field: subscription_key
+
+      - name: date_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+      - name: ai_model_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_ai_model')
+                field: ai_model_key
+
+      - name: feature_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_feature')
+                field: feature_key
+
+      - name: total_tokens
+        data_tests:
+          - not_null
+
+
+  # =========================================================
+  # FACT PAYMENTS
+  # =========================================================
+
+  - name: fct_payments
+
+    data_tests:
+      - unique:
+          arguments:
+            column_name: payment_key
+
+    columns:
+
+      - name: payment_key
+        data_tests:
+          - not_null
+
+      - name: customer_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_key
+
+      - name: subscription_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_subscription')
+                field: subscription_key
+
+      - name: date_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key
+
+
+  # =========================================================
+  # FACT SUPPORT TICKETS
+  # =========================================================
+
+  - name: fct_support_tickets
+
+    data_tests:
+      - unique:
+          arguments:
+            column_name: support_ticket_key
+
+    columns:
+
+      - name: support_ticket_key
+        data_tests:
+          - not_null
+
+      - name: customer_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_customer')
+                field: customer_key
+
+      - name: submitted_date_key
+        data_tests:
+          - not_null
+
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_key

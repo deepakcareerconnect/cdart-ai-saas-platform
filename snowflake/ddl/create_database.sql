@@ -1,0 +1,1 @@
+CREATE DATABASE IF NOT EXISTS cdart_ai_saas_platform_DW;

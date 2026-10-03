@@ -1,0 +1,43 @@
+version: 2
+
+models:
+
+  - name: int_customer_360
+
+    columns:
+
+      - name: ACCOUNT_ID
+
+        tests:
+          - not_null
+          - unique
+
+          - relationships:
+              to: ref('stg_accounts')
+              field: ACCOUNT_ID
+
+      - name: SUBSCRIPTION_COUNT
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: TOTAL_REVENUE
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+
+
+      - name: TOTAL_SUPPORT_TICKETS
+
+        tests:
+          - not_null
+
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"

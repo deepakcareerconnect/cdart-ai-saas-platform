@@ -1,0 +1,46 @@
+# Secrets — never commit
+.env
+*.env
+!.env.example
+profiles.yml
+*.pem
+*.key
+rsa_private.pem
+
+# Airflow runtime
+airflow/logs/
+airflow/airflow/
+logs/
+standalone_admin_password.txt
+airflow_webserver_config.py
+
+# dbt
+target/
+dbt_packages/
+packages/
+logs/
+dbt_semantic_intermediate/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment / tooling
+.vscode/*
+!.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# OS
+*.swp
+*~
+
+data/raw/

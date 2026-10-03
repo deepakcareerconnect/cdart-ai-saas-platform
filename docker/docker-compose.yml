@@ -1,0 +1,34 @@
+<<<<<<< HEAD
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: cdart_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: cdart_saas
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+=======
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: cdart_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: cdart_saas
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+>>>>>>> 448cad1969301acd4faf665775b240bfb03c46fa
+  postgres_data:
